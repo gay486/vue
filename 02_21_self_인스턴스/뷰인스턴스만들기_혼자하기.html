@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>뷰 인스턴스 만들기_혼자하기</title>
+
+    <style>
+        h1 {text-align:center;}
+        h2 {text-align:center;padding:50px 0;}
+        table {width:500px;margin:0 auto;}
+        table th,td {border:1px solid #ddd;text-align:center;}
+    </style>
+
+</head>
+<body>
+    
+    <h1>뷰 인스턴스 만들기_혼자하기</h1>
+
+    <h2>성적관리</h2>
+    <table id="sungjuk">
+
+    </table>
+
+    <script>
+
+        var objProject = {
+            a: 300,
+            el: 'Vue.js test',
+            data: {
+                arr1: [
+                    {name:'오나라',eng:100,kor:080,mat:080,jp:000},
+                    {name:'이루리',eng:090,kor:085,mat:090,jp:088},
+                    {name:'나기쁨',eng:080,kor:089,mat:083,jp:093},
+                    {name:'김사랑',eng:087,kor:100,mat:096,jp:081},
+                    {name:'이순정',eng:098,kor:082,mat:100,jp:100}
+                ],
+                arr2: ['여행','사진','그림'],
+            },
+            method1: function(){
+                this.a = 1004,
+                console.log(this.a);
+            },
+            method2: function(){
+                this.el += ' javascript / angel /'
+                console.log(this.el);
+            },
+            method3: function(){
+
+                //성적관리
+
+                var txt = '';
+                var $sungjuk = document.querySelector('#sungjuk');
+
+                txt = '<tr><th>NAME</th><th>ENG</th><th>KOR</th><th>MAT</th><th>JP</th></tr>';
+
+                this.data.arr1.forEach(function(el,idx,arr){
+                    txt += '<tr><td>' + el.name + '</td><td>' + el.eng + '</td><td>' + el.kor + '</td><td>' + el.mat + '</td><td>' + el.jp + '</td></tr>';
+                });
+
+                $sungjuk.innerHTML = txt;
+
+
+                console.log(this.data.arr1);
+                console.log(this.data.arr1[2]);
+                console.log(this.data.arr1[1].jp);
+                console.log(this.data.arr1[3].kor);
+                var tot = this.data.arr1[4].eng + this.data.arr1[4].kor + this.data.arr1[4].mat + this.data.arr1[4].jp;
+                console.log( '총점' + tot );
+            },
+            method4: function(){
+                console.log(this.data.arr2[0]);
+                console.log(this.data.arr2[1]);
+                console.log(this.data.arr2[2]);
+            },
+            init: function(){
+                this.method1();
+                this.method2();
+                this.method3();
+                this.method4();
+            }
+        }
+        objProject.init();
+
+    </script>
+
+</body>
+</html>

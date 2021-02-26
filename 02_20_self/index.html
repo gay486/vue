@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue.js 혼자하기</title>
+
+    <script src="./vue/lib/vue.js"></script>
+
+</head>
+<body>
+    
+    <div id="wrap">
+        <div id="app">
+            <h1>Vue.js 혼자하기</h1>
+            <h2 v-on:click='kiki'>{{txt}}</h2>
+            <p>{{msg}}</p>
+            <hr>
+        </div>
+
+        <script>
+
+            var obj = new Vue({
+                el: '#app',
+                data: {
+                    txt: 1000000,
+                    msg: 'VUE.JS'
+                },
+                methods: {
+                    kiki: function(){
+                        this.txt = 1004
+                        this.msg = '천사!!!'
+                    }
+                }
+            });
+
+        </script>
+
+        <div id="nav">
+            <h1>JAVASCRIPT</h1>
+            <h2 @click='kyokyo'>Who are {{msg}}</h2>
+            <p>{{txt}}</p>
+        </div>
+
+        <script>
+
+            var navObj = new Vue({
+                el: '#nav',
+                data: function(){
+                    return {
+                        msg: 'YOU',
+                        txt: 12345
+                    }
+                },
+                methods: {
+                    kyokyo: function(){
+                        var that = this;
+                        that.msg = 'WE?'
+                        that.txt = 67890
+                    } 
+                }
+            });
+        </script>
+
+        <style>
+
+            #wrap {width:1500px;margin:0 auto;padding:150px 0;}
+            #app,#nav {text-align:center;padding:20px 0;}
+            h2,p {color:#f75;background:#367;display:inline-flex;padding:10px;font-size:20px;font-weight:500;}
+
+        </style>
+
+    </div>
+
+</body>
+</html>

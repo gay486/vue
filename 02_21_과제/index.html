@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>v-for 반복문_혼자하기</title>
+
+    <script src="./vue/lib/vue.js"></script>
+
+    <style>
+        body {text-align:center;}
+        h2 {padding:50px 0;}
+        table {width:500px;margin:0 auto;border-collapse:collapse;}
+        table th {background:#f0f0f0;text-transform:uppercase;}
+        table th,td {border:1px solid #ddd;height:30px;}
+    </style>
+
+</head>
+<body>
+    
+    <h1>v-for 반복문_혼자하기</h1>
+
+    <h2>성적관리</h2>
+    <table id="sungjuk">
+        <tr><th>no</th><th>name</th><th>kor</th><th>eng</th><th>mat</th><th>art</th><th>total</th></tr>
+        <tr v-for='el in student'><td>{{ el.no }}</td><td>{{ el.name }}</td><td>{{ el.kor }}</td><td>{{ el.eng }}</td><td>{{ el.mat }}</td><td>{{ el.art }}</td><td>{{el.kor+el.eng+el.mat+el.art}}</td></tr>
+    </table>
+
+    <script>
+
+        var obj = new Vue({
+            el: '#sungjuk',
+            data: {
+                student: [
+                    {no:01, name:'김주택', kor:73, eng:100, mat:64, art:87 },
+                    {no:02, name:'고은성', kor:62, eng:98, mat:77, art:100 },
+                    {no:03, name:'조민규', kor:75, eng:63, mat:100, art:95 },
+                    {no:04, name:'김바울', kor:89, eng:60, mat:82, art:99 },
+                    {no:05, name:'황건하', kor:76, eng:97, mat:76, art:65 },
+                    {no:06, name:'유채훈', kor:100, eng:67, mat:85, art:90 },
+                    {no:07, name:'백형훈', kor:64, eng:99, mat:65, art:81 },
+                    {no:08, name:'이충주', kor:64, eng:93, mat:82, art:85 },
+                    {no:09, name:'조형균', kor:66, eng:87, mat:93, art:71 },
+                    {no:10, name:'고훈정', kor:100, eng:89, mat:65, art:75 }
+                ]
+            }
+        });
+
+    </script>
+
+</body>
+</html>
