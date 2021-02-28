@@ -44,14 +44,14 @@
             },
             methods:{   //메서드 관리해주는 속성
 
-                // 메서드 리터럴 함수
+                // 메서드 == 리터럴 함수 == 익명함수
                 product: function(){
                     // let that = this;
                     let that = header;
                     /* header.num = 1
                     this.num = 100 */
                     that.num += 100;
-                    this.msg = '데이터 메시지 수정';
+                    that.msg = '데이터 메시지 수정';
                 },
                 price: function(){
                     this.num += 100000;
@@ -85,11 +85,15 @@
                         console.log('mouseenter');
                     }
                 });
-            },
-            beforeUpdate:function(){
-                console.log('뷰 생명주기 beforeUpdate 실제 업데이트 수정은 여기서');
 
-                
+                // $('.h1-btn').each(function(idx){
+                //     $(this).on({
+                //         click:function(){
+                //             idx
+                //         }
+                //     })
+                // });
+
                 // $('.h1-btn')
                 // .on('click', function(){
                 //     alert('제이쿼리 클릭 이벤트'); 
@@ -102,13 +106,16 @@
                 // });
 
             },
+            beforeUpdate:function(){
+                console.log('뷰 생명주기 beforeUpdate 실제 업데이트 수정은 여기서');
+            },
             updated:function(){
                 console.log('뷰 생명주기 updated 여기는 수정된 결과만');
             },
             beforeDestroy:function(){
                 console.log('뷰 생명주기 beforeDestroy');
             },
-            destroyed:function(){
+            destroyed:function(){   /* 디스트로이 소멸(삭제===파괴) */
                 console.log('뷰 생명주기 destroyed');
             }
         });

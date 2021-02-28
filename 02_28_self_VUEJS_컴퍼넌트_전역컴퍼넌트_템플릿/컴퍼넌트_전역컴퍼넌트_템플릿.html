@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>컴퍼넌트_전역컴퍼넌트_템플릿</title>
+
+    <!-- 오픈소스 -->
+    <script src="./js/lib/jquery.min.js"></script>
+    <script src="./vue/lib/vue.js"></script>
+
+    <style>
+        #wrap {width:1200px;margin:0 auto;text-align:center;background:#f0f0f0;}
+        #wrap #header h1 {color:#000;}
+        #wrap #header h2 {color:#279;}
+        #wrap #header h2 mark {background:#ad5;}
+
+        #wrap #main .button-box {padding:50px 0;}
+        #wrap #main .button-box button {cursor:pointer;color:#395;background:#fff;font-weight:600;font-size:20px;width:200px;height:30px;}
+        #wrap #main .button-box button:hover {color:#fff;background:#000;}
+        #wrap #main .button-box button:active {background:#925;}
+        #wrap #main .button-box p {font-size:30px;padding:50px 0;color:#925;}
+    </style>
+
+</head>
+<body>
+<div id="wrap">
+
+    <div id="header">
+        <h1>{{ txt }}</h1>
+        <nav-component></nav-component>
+        <nav-component1 v-bind:navbind='txt2'></nav-component1>
+    </div>
+
+    <div id="main">
+        <div class="button-box">
+            <button v-on:click='cntFn'>클릭하세요!!!</button>
+            <koko-component v-bind:cntbind='num'></koko-component>
+        </div>
+    </div>
+
+    <script>
+        Vue.component('nav-component',{
+            template:'<h2><mark>전역 컴퍼넌트 템플릿 속성</mark></h2>'
+        });
+        Vue.component('nav-component1',{
+            props:['navbind'],
+            template:'<h2><mark><em>{{ navbind }}</em></mark></h2>'
+        });
+
+        var header = new Vue({
+            el:'#header',
+            data:{
+                txt:'전역 컴퍼넌트 만들기',
+                txt2:'상위 컴퍼넌트에서 하위 컴퍼넌트에게 통신 - Properties(Props)'
+            }
+        });
+
+        Vue.component('koko-component',{
+            props:['cntbind'],
+            template:'<p>{{ cntbind }}</p>'
+        });
+
+        var main = new Vue({
+            el:'#main',
+            data:{
+                num:0
+            },
+            methods:{
+                cntFn: function(){
+                    this.num ++;
+                }
+            }
+        });
+
+    </script>
+
+</div>
+</body>
+</html>

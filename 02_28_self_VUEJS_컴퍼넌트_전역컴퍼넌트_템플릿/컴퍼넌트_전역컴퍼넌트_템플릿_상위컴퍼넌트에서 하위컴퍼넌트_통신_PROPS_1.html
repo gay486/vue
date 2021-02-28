@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>컴퍼넌트_전역컴퍼넌트_템플릿</title>
+
+    <!-- 오픈소스 -->
+    <script src="./js/lib/jquery.min.js"></script>
+    <script src="./vue/lib/vue.js"></script>
+
+    <style>
+        * {margin:0;padding:0;vertical-align:middle;border:0;}
+        html,body {width:100%;height:100%;}
+        html {overflow-y:scroll;}
+        body {font:normal 16px/1 '돋움', 'arial';color:#555;background:#f6f6f6;}
+        a {color:#777;text-decoration:none;}
+        h1,h2,h3,h4,h5,h6 {font-weight:normal;font-size:16px;}
+        ul,li {list-style:none;}
+        .clearfix::after {content:'';display:block;clear:both;}
+
+        #wrap {width:100%;margin:0 auto;}
+        #wrap #section .notice {width:1200px;margin:0 auto;text-align:center;}
+        #wrap #section .notice h1 {padding:50px 0;color:#379;font-size:50px;font-weight:normal;}
+        #wrap #section .notice h2 {font-size:20px;font-weight:600;background:#f0f0f0;border-top:2px solid #bbb;border-bottom:2px solid #bbb;line-height:50px;}
+        #wrap #section .notice    span {float:left;display:block;}
+        #wrap #section .notice    span.no {width:59px;}
+        #wrap #section .notice    span.title {width:819px;}
+        #wrap #section .notice    span.date {width:119px;}
+        #wrap #section .notice    span.cnt {width:103px;}
+        #wrap #section .notice ul {width:100%;}
+        #wrap #section .notice ul li {border-bottom:1px solid #ccc;line-height:50px;}
+        #wrap #section .notice ul li span.title {text-align:left;text-indent:20px;}
+        #wrap #section .notice ul li span.title a:hover {text-decoration:underline;color:#000;}
+    </style>
+
+</head>
+<body>
+<div id="wrap">
+    <div id="section">
+        <div class="notice">
+            <h1>공지사항</h1>
+            <h2 class="clearfix">
+                <span class="no">NO</span>
+                <span class="title">제목</span>
+                <span class="date">날짜</span>
+                <span class="cnt">조회수</span>
+            </h2>
+            <ul>
+                <notice-component v-for='row in notice' v-bind:noticebind='row'></notice-component>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+
+        Vue.component('notice-component',{
+            props:['noticebind'],
+            template:"\
+                <li class='clearfix'>\
+                    <span class='no'>{{ noticebind.no }}</span>\
+                    <span class='title'><a href='javascript:void(0);'>{{ noticebind.제목 }}</a></span>\
+                    <span class='date'>{{ noticebind.날짜 }}</span>\
+                    <span class='cnt'>{{ noticebind.조회수 }}</span>\
+                </li>\
+                "
+        });
+
+        var section = new Vue({
+            el:'#section',
+            data:{
+                notice:[
+                    {no:301, 제목:"시스템 개선 및 점검 안내", 날짜:"2021-02-25", 조회수:7658},
+                    {no:300, 제목:"SSG PAY 결제 서비스 일시 이용 중지 안내", 날짜:"2021-02-15", 조회수:45220},
+                    {no:299, 제목:"스타벅스 홈페이지/애플리케이션 일부 서비스 종료 안내", 날짜:"2021-02-15", 조회수:49113},
+                    {no:298, 제목:"시스템 개선 및 점검 안내", 날짜:"2021-02-10", 조회수:32728},
+                    {no:297, 제목:"스타벅스 Web/App 결제 수단 변경 안내", 날짜:"2021-02-10", 조회수:144261},
+                    {no:296, 제목:"설 연휴 스타벅스 딜리버스 운영 시간 안내", 날짜:"2021-02-09", 조회수:66721},
+                    {no:295, 제목:"설 연휴 스타벅스 매장 영업시간 변경 안내", 날짜:"2021-02-04", 조회수:117654},
+                    {no:294, 제목:"시스템 개선 및 점검 안내", 날짜:"2021-02-03", 조회수:7099},
+                    {no:293, 제목:"개인정보 처리방침 개정안내", 날짜:"2021-01-28", 조회수:7839},
+                    {no:292, 제목:"위치정보 이용약관 개정안내", 날짜:"2021-01-28", 조회수:5061}
+                ]
+            }
+        });
+
+
+    </script>
+
+</div>
+</body>
+</html>

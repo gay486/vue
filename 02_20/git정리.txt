@@ -1,0 +1,79 @@
+
+\\192.168.0.59
+네트워크 연결IP
+
+
+
+cd 경로 변경
+D:/주말반_최아영/github/vue
+
+
+
+깃 설정
+
+
+주말반@1304-02 MINGW64 ~
+$ pwd
+/c/Users/주말반
+
+주말반@1304-02 MINGW64 ~
+$ cd D:/주말반_최아영/github/vue
+
+주말반@1304-02 MINGW64 /d/주말반_최아영/github/vue (master)
+$ git init
+Initialized empty Git repository in D:/주말반_최아영/github/vue/.git/
+
+주말반@1304-02 MINGW64 /d/주말반_최아영/github/vue (master)
+$ ls
+02_20/
+
+주말반@1304-02 MINGW64 /d/주말반_최아영/github/vue (master)
+$ ls -la
+total 4
+drwxr-xr-x 1 주말반 197121 0 Feb 20 12:29 ./
+drwxr-xr-x 1 주말반 197121 0 Feb 20 12:09 ../
+drwxr-xr-x 1 주말반 197121 0 Feb 20 12:29 .git/
+drwxr-xr-x 1 주말반 197121 0 Feb 20 12:10 02_20/
+
+
+원격접속(리모트 remote) 필요사항 : 사용자 이메일 과 사용자 이름
+
+사용자(user) 이메일(email)
+
+$ git config user.email 'akinizi486@gmail.com'
+
+
+사용자(user) 이름(name)
+
+$ git config user.name 'gay486'
+
+
+깃허브 리포지토리(저장소) 원격 추가(add) 접속
+
+$ git remote add origin https://github.com/gay486/vue.git
+
+
+확인
+
+$ git remote -v
+origin  https://github.com/gay486/vue.git (fetch)
+origin  https://github.com/gay486/vue.git (push)
+
+
+파일 올리기 업로드(upload) (push)
+
+1) 업로드 할 파일 선택한다.
+스테이징(올릴 파일을 스테이징에 올린다.)
+
+git add .
+
+
+2) 커밋한다.(commit)
+검증 수정된것 삭제된것 추가된것 이런 것들을 검증(검사)
+
+git commit -m '2021-02-20 VS CODE 젠코딩 공부한것'
+
+
+3) 최종 업로드 push하기
+
+git push origin master
