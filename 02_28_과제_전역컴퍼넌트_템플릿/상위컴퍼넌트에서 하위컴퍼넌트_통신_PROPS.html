@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>상위컴퍼넌트에서 하위컴퍼넌트로 통신_혼자하기</title>
+
+    <!-- 오픈소스 -->
+    <script src="./js/lib/jquery.min.js"></script>
+    <script src="./vue/lib/vue.js"></script>
+
+    <style>
+        * {margin:0;padding:0;vertical-align:middle;border:0;}
+        html,body {width:100%;height:100%;}
+        html {overflow-y:scroll;}
+        body {font:normal 16px/1 'arial', '돋움';color:#555;background:#f6f6f6;}
+        a {color:#666;text-decoration:none;}
+        h1,h2,h3,h4,h5,h6 {font-weight:normal;font-size:16px;text-align:center;}
+        ul,li {list-style:none;}
+        .clearfix::after {content:'';display:block;clear:both;}
+
+        #wrapper {width:100%;margin:0 auto;}
+        #wrapper #section {width:1400px;margin:0 auto;}
+        #wrapper #section .logo {float:left;width:200px;margin:50px;}
+        #wrapper #section .logo img {width:100%;}
+        #wrapper #section .notice {float:left;width:1000px;margin:0 auto;}
+        #wrapper #section .notice h1 {text-align:left;color:#000;margin:70px 0 35px 0;padding-bottom:5px;font-size:30px;border-bottom:1px solid #bbb;}
+        #wrapper #section .notice h1 strong {vertical-align:top;color:#919;}
+        #wrapper #section .notice h2 {font-size:18px;font-weight:600;line-height:50px;border-top:1px solid #bbb;border-bottom:1px solid #bbb;background:#f0f0f0;}
+        #wrapper #section .notice    span {float:left;display:block;}
+        #wrapper #section .notice    span.no {width:70px;}
+        #wrapper #section .notice    span.category {width:100px;}
+        #wrapper #section .notice    span.subject {width:600px;}
+        #wrapper #section .notice    span.date {width:130px;}
+        #wrapper #section .notice    span.count {width:100px;}
+
+        #wrapper #section .notice ul {width:100%;text-align:center;}
+        #wrapper #section .notice ul li {line-height:50px;border-bottom:1px solid #ccc;}
+        #wrapper #section .notice ul li:hover {background:#f0f0f0;}
+        #wrapper #section .notice ul li span.subject {text-align:left;text-indent:20px;}
+        #wrapper #section .notice ul li span.subject a:hover {text-decoration:underline;color:#000;}
+    </style>
+</head>
+<body>
+<div id="wrapper">
+
+    <!-- HTML -->
+    <div id="section" class="clearfix">
+        <div class="logo"><img v-bind:src='img1' v-bind:alt='imgalt' v-bind:title='imgt'></div>
+        <div class="notice">
+            <h1> 뉴스 및 <strong>공지</strong> </h1>
+            <h2 class="clearfix">
+                <span class='no'>번호</span>
+                <span class='category'>카테고리</span>
+                <span class='subject'>제목</span>
+                <span class='date'>작성일</span>
+                <span class='count'>조회</span>
+            </h2>
+            <ul>
+                <notice-component v-for='row in notice' v-bind:propsbind='row'></notice-component>   
+            </ul>
+        </div>
+    </div>
+
+    <!-- SCRIPT -->
+    <script>
+
+        Vue.component('notice-component',{
+            props:['propsbind'],
+            template:"\
+                <li class='clearfix'>\
+                    <span class='no'>{{ propsbind.번호 }}</span>\
+                    <span class='category'>{{ propsbind.카테고리 }}</span>\
+                    <span class='subject'><a href='javascript:void(0);'>{{ propsbind.제목 }}</a></span>\
+                    <span class='date'>{{ propsbind.작성일 }}</span>\
+                    <span class='count'>{{ propsbind.조회 }}</span>\
+                </li>\
+                "
+        });
+
+        var section = new Vue({
+            el:'#section',
+            data:{
+                img1:'./img/logo.png',
+                imgalt:'로고 이미지',
+                imgt:'로고',
+                notice:[
+                    {번호:108, 카테고리:"[공지]", 제목:"개인정보처리방침 변경에 대한 안내", 작성일:"2021-03-05", 조회:31},
+                    {번호:107, 카테고리:"[공지]", 제목:"시스템 정기 점검 안내", 작성일:"2021-02-22", 조회:218},
+                    {번호:106, 카테고리:"[공지]", 제목:"시스템 정기 점검 안내", 작성일:"2021-01-29", 조회:539},
+                    {번호:105, 카테고리:"[공지]", 제목:"크리스마스 시즌 Winter Fantasy 이벤트 당첨자 안내", 작성일:"2021-01-05", 조회:2685},
+                    {번호:104, 카테고리:"[공지]", 제목:"럭키드로우 이벤트 안내 및 진행 매장 리스트", 작성일:"2020-12-31", 조회:40001},
+                    {번호:103, 카테고리:"[공지]", 제목:"시스템 정기점검 안내", 작성일:"2020-12-23", 조회:931},
+                    {번호:102, 카테고리:"[공지]", 제목:"케이크 클래스 서비스 종료 안내", 작성일:"2020-12-21", 조회:1431},
+                    {번호:101, 카테고리:"[이벤트]", 제목:"12월 커피/음료 구매 시, 디저트 2,000원 할인", 작성일:"2020-12-12", 조회:4651},
+                    {번호:100, 카테고리:"[공지]", 제목:"투썸x크로우캐년 법랑 머그, 텀블러 재고보유 매장 안내（12/7, 오후2시 기준)", 작성일:"2020-12-07", 조회:7022},
+                    {번호:99,  카테고리:"[공지]", 제목:"투썸x크로우캐년 법랑 머그, 텀블러 재고보유 매장 안내（12/4, 오후 2시 기준)", 작성일:"2020-12-04", 조회:9683}
+                ]
+            }
+        });
+        
+    </script>
+    
+</div>
+</body>
+</html>
