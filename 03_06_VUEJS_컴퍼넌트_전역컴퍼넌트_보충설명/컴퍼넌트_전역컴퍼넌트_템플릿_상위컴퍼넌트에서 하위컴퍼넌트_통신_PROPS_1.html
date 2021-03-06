@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>컴퍼넌트_전역컴퍼넌트_템플릿_상위컴퍼넌트에서 하위컴퍼넌트로 통신</title>
+
+    <!-- 오픈소스 -->
+    <script src="./js/lib/jquery.min.js"></script>
+    <script src="./vue/lib/vue.js"></script>
+
+    <style>
+        #wrapper {width:1200px;margin:0 auto;text-align:center;background:#f0f0f0;}
+        #wrapper #header h1 {color:#000;}
+        #wrapper #header h2 {color:#279;}
+        #wrapper #header h2 mark {background:#ad5;}
+    </style>
+
+</head>
+<body>
+<div id="wrapper">
+
+    <!-- HTML -->
+    <div id="header">
+        <h1> {{ msg }} </h1>
+        <!-- 상위 컴퍼넌트에서 하위 컴퍼넌트에게 통신은 Properties(속성) props(속성) v-bind 를 이용하여 전달한다. -->
+        <!-- 하위 컴퍼넌트에서 상위 컴퍼넌트에게 통신은 Event(이벤트) $emit 을 이용하여 전달한다. -->
+        <nav-component v-bind:txtbind='txt'></nav-component>   <!-- 스네이크케이스 컴퍼넌트 표기법(네이밍규칙) 가상 요소(JSX) 사용자 정의 태그(요소) 컴퍼넌트 이름 (상위 컴퍼넌트) -->
+        <!-- <nav-component :txtbind='txt'></nav-component>  v-bind: 를 : 로 간추려서 사용가능 -->
+        
+        <!-- 
+        <navComponent v-bind:txtbind='txt'></navComponent>   카멜케이스 표기법(네이밍규칙) 
+        <NavComponent v-bind:txtbind='txt'></NavComponent>   파스칼케이스 표기법(네이밍규칙)
+         -->
+
+    </div>
+
+    <h1 data-teme='gallery'></h1>
+
+    <!-- SCRIPT -->
+    <script>
+
+        // 전역컴퍼넌트 생성
+        Vue.component('nav-component',{
+            props:['txtbind'],   //바인딩(v-bind:속성이름)할 속성 지정
+            template:'<h2><mark><em> {{ txtbind }} </em></mark></h2>'    // (하위 컴퍼넌트)
+        });
+
+        // 뷰 인스턴스 생성
+        var header = new Vue({
+            el:'#header',
+            data:{
+                msg:'전역 컴퍼넌트 생성',
+                txt:'상위 컴퍼넌트에서 하위 컴퍼넌트로 통신 성공!!!'
+            }
+        });
+
+    </script>
+    
+</div>
+</body>
+</html>
