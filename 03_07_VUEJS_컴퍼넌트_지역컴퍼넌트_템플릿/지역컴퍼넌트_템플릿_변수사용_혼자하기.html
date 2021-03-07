@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>컴퍼넌트_지역컴퍼넌트_템플릿</title>
+
+    <!-- 오픈소스 -->
+    <script src="./js/lib/jquery.min.js"></script>
+    <script src="./vue/lib/vue.js"></script>
+
+    <style>
+        #wrap {width:1200px;margin:0 auto;text-align:center;background:#f0f0f0;}
+        #wrap #local h1 {color:#000;}
+        #wrap #local h2 {color:#279;}
+        #wrap #local h2 mark {background:#ad5;color:#f57;}
+        #wrap #local button {padding:5px 10px;color:#fff;background:#000;}
+    </style>
+
+</head>
+<body>
+<div id="wrap">
+
+    <div id="local">
+        <h1>지역 컴퍼넌트 만들기</h1>
+        <section1-component></section1-component>
+        <section2-component></section2-component>
+        <section3-component></section3-component>
+    </div>
+
+    <script>
+
+        var section1Component = {
+            template:'<h2><mark>지역 컴퍼넌트</mark></h2>'
+        }
+
+        var section2Component = {
+            template:'<h2>생성 완료!</h2>'
+        }
+
+        var section3Component = {
+            template:'<button>클릭하세요!!!</button>'
+        }
+
+        var local = new Vue ({
+            el:'#local',
+            data:{
+                
+            },
+            components:{
+                'section1-component': section1Component,
+                'section2-component': section2Component,
+                'section3-component': section3Component
+            }
+        });
+
+    </script>
+
+</div>
+</body>
+</html>

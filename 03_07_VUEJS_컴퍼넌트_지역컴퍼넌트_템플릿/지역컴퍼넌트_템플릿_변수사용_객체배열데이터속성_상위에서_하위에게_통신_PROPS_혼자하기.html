@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>컴퍼넌트_지역컴퍼넌트_템플릿</title>
+
+    <!-- 오픈소스 -->
+    <script src="./js/lib/jquery.min.js"></script>
+    <script src="./vue/lib/vue.js"></script>
+
+    <style>
+        li {color:#389;}
+    </style>
+
+</head>
+<body>
+<div id="wrap">
+
+    <div id="drama">
+        <h2>지역 컴퍼넌트 객체 배열 데이터 - 요즘 드라마</h2>
+        <ol>
+            <drama-comp v-for='item in dramaData' v-bind:bindprops='item'></drama-comp>
+        </ol>
+    </div>
+
+    <script>
+
+        var dramaComp = {
+            props:['bindprops'],
+            template:'<li> 주연 : {{ bindprops.name }}, &nbsp;&nbsp;&nbsp; 드라마 제목 : {{ bindprops.title }} </li>'
+        }
+
+        var drama = new Vue({
+            el:'#drama',
+            data:{
+                dramaData:[
+                    {name:'조승우',title:'시지프스'},
+                    {name:'신하균',title:'괴물'},
+                    {name:'이승기',title:'마우스'},
+                    {name:'송중기',title:'빈센조'},
+                    {name:'이서진',title:'타임즈'}
+                ]
+            },
+            components:{
+                'drama-comp':dramaComp
+            }
+        });
+
+    </script>
+
+
+
+</div>
+</body>
+</html>
