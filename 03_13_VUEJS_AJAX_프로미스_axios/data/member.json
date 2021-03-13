@@ -1,0 +1,14 @@
+{
+    "member":[
+        {"userId":"nizi_aki","userPw":"aki1004","email":"nizi_aki@naver.com"},
+        {"userId":"koko","userPw":"ko1004","email":"kokozzing@naver.com"},
+        {"userId":"aki1004","userPw":"aa1004","email":"niziaki1@naver.com"},
+        {"userId":"nizi1004","userPw":"kokoko","email":"aki@naver.com"},
+        {"userId":"niziaki","userPw":"486nizi","email":"nizi@naver.com"},
+        {"userId":"akinizi","userPw":"koko1004","email":"nizi123@naver.com"},
+        {"userId":"1004aki","userPw":"ko1004ko","email":"123aki@naver.com"},
+        {"userId":"1004nizi","userPw":"ko486","email":"nizi486@naver.com"},
+        {"userId":"nizi486","userPw":"1004a","email":"akikoko@naver.com"},
+        {"userId":"aki486","userPw":"kokoa03","email":"niziaki@naver.com"}
+    ]
+}
